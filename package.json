@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "mocha": "^2.1.0",
-    "sass-true": "^2.0.0"
+    "sass-true": "^2.0.0-beta.1"
   },
   "author": "Eric M Suzanne <eric@oddbird.net>",
   "license": "BSD-3-Clause",

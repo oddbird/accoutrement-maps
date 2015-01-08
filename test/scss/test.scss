@@ -85,23 +85,23 @@
       'Returns false for non-existing deep key.');
   }
 
-//  @include test('render') {
-//    $render: (
-//      -test: 'Properties are output directly.',
-//      background: #ff0,
-//    );
-//
-//    @include assert('Nested maps are rendered to CSS.') {
-//      @include input {
-//        @include render($render);
-//      }
-//
-//      @include expect {
-//        -test: 'Properties are output directly.';
-//        background: #ff0;
-//      }
-//    }
-//  }
+  @include test('render') {
+    $render: (
+      background: #ff0,
+      border: 1px solid #000,
+    );
+
+    @include assert('Nested maps are rendered to CSS.') {
+      @include input {
+        @include render($render);
+      }
+
+      @include expect {
+        background: #ff0;
+        border: 1px solid #000;
+      }
+    }
+  }
 }
 
 // Report
