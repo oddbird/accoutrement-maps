@@ -13,6 +13,9 @@
   },
   "author": "Eric M Suzanne <eric@oddbird.net>",
   "license": "BSD-3-Clause",
+  "scripts": {
+    "test": "node_modules/.bin/mocha"
+  },
   "bugs": {
     "url": "https://github.com/oddbird/accoutrement-maps/issues"
   }
