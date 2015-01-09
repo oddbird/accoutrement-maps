@@ -5,40 +5,47 @@
 @import '../../sass/maps';
 
 
-@include test-module('Map Helpers') {
-  $map: (
-    one: (
-      hello: (
-        world: new york,
-        pizza: sausage,
-      ),
-      goodbye: fugard,
+$map: (
+  one: (
+    hello: (
+      world: new york,
+      pizza: sausage,
     ),
-    two: cheese,
-  );
+    goodbye: fugard,
+  ),
+  two: cheese,
+);
 
 
-  // Truncate List
-  @include test('_truncate-list') {
+// Truncate List
+// -------------
+@include test-module('_truncate-list [function]') {
+  @include test('Truncate a list') {
     $list: one two three four;
     $test: _truncate-list($list, 3);
     $expect: one two three;
     @include assert-equal($test, $expect,
-      'Returns a list truncated to the given length.');
+      'Returns a list truncated to a given number of list items.');
   }
+}
 
 
-  // Deep Get
-  @include test('deep-get') {
+// Deep Get
+// --------
+@include test-module('deep-get [function]') {
+  @include test('Access a nested key') {
     $test: deep-get($map, one, hello, world);
     $expect: new york;
     @include assert-equal($test, $expect,
       'Returns value of deep key.');
   }
+}
 
 
-  // Deep Set
-  @include test('deep-set') {
+// Deep Set
+// --------
+@include test-module('deep-set [function]') {
+  @include test('Set a new value on a nested key') {
     $test: deep-set($map, one, hello, pizza, yum);
     $expect: (
       one: (
@@ -52,7 +59,9 @@
     );
     @include assert-equal($test, $expect,
       'Returns map with deep value adjusted.');
+  }
 
+  @include test('Create a new nested key-value pair') {
     $test: deep-set($map, one, monkey, three, test);
     $expect: (
       one: (
@@ -70,10 +79,13 @@
     @include assert-equal($test, $expect,
       'Set deep value even in new key path.');
   }
+}
 
 
-  // Deep Has-Key
-  @include test('deep-has-key') {
+// Deep Has-Key
+// ------------
+@include test-module('deep-has-key [function]') {
+  @include test('Find if a nested key exists') {
     $test: deep-has-key($map, one, hello, world);
     $expect: true;
     @include assert-equal($test, $expect,
@@ -84,24 +96,7 @@
     @include assert-equal($test, $expect,
       'Returns false for non-existing deep key.');
   }
-
-  @include test('render') {
-    $render: (
-      background: #ff0,
-      border: 1px solid #000,
-    );
-
-    @include assert('Nested maps are rendered to CSS.') {
-      @include input {
-        @include render($render);
-      }
-
-      @include expect {
-        background: #ff0;
-        border: 1px solid #000;
-      }
-    }
-  }
 }
+
 
 @include report;
