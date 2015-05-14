@@ -13,6 +13,13 @@
   },
   "author": "Eric M Suzanne <eric@oddbird.net>",
   "license": "MIT",
+  "keywords": [
+    "sass",
+    "accoutrement",
+    "toolkit",
+    "sass-maps",
+    "eyeglass-module"
+  ],
   "eyeglass": {
     "exports": "eyeglass-exports.js"
   },
