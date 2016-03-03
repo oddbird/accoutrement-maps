@@ -99,4 +99,58 @@ $map: (
 }
 
 
+// deep-merge
+// ----------
+@include test-module('deep-merge [function]') {
+  @include test('Merge two nested maps') {
+    $new-map: (
+      one: (
+        hello: (
+          cocktail: pop,
+        ),
+        
+      )
+    );
+    $test: deep-merge($map, $new-map);
+    $expect: (
+      one: (
+        hello: (
+          world: new york,
+          pizza: sausage,
+          cocktail: pop,
+        ),
+        goodbye: fugard,
+      ),
+      two: cheese,
+    );
+    @include assert-equal($test, $expect,
+      'Merges nested maps.');
+  }
+
+  @include test('Merge two nested maps with matching keys') {
+    $new-map: (
+      one: (
+        hello: (
+          world: jenin,
+        ),
+        
+      )
+    );
+    $test: deep-merge($map, $new-map);
+    $expect: (
+      one: (
+        hello: (
+          world: jenin,
+          pizza: sausage,
+        ),
+        goodbye: fugard,
+      ),
+      two: cheese,
+    );
+    @include assert-equal($test, $expect,
+      'Merges nested maps with matching keys.');
+  }
+}
+
+
 @include report;

@@ -101,7 +101,7 @@
     $map1: $map2;
   } @else {
     @each $key, $value in $map2 {
-      $_new: ($key: _susy_deep-merge(map-get($map1, $key), $value));
+      $_new: ($key: deep-merge(map-get($map1, $key), $value));
       $map1: map-merge($map1, $_new);
     }
   }
