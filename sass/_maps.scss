@@ -70,22 +70,15 @@
   $map,
   $keys...
 ) {
-  $_return: null;
-  $_stop: false;
-
   @each $key in $keys {
-    @if not $_stop {
-      $_return: map-has-key($map, $key);
+    @if not map-has-key($map, $key) {
+       @return false;
     }
 
-    @if $_return {
-      $map: map-get($map, $key);
-    } @else {
-      $_stop: true;
-    }
+    $map: map-get($map, $key);
   }
 
-  @return $_return;
+  @return true;
 }
 
 
